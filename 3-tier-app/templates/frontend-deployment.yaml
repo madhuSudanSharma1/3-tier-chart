@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount.frontend }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.images.frontend }}
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_CLERK_PUBLISHABLE_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: CLERK_PUBLISHABLE_KEY
+            - name: VITE_BACKEND1_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BACKEND1_BASE_URL
+            - name: VITE_BACKEND2_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BACKEND2_BASE_URL
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80

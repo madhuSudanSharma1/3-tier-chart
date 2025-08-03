@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: {{ .Values.namespace }}
+data:
+  BACKEND1_PORT: {{ .Values.app.backend1Port | quote }}
+  BACKEND2_PORT: {{ .Values.app.backend2Port | quote }}
+  DB_PORT: {{ .Values.database.port | quote }}
+  DB_HOST: {{ .Values.database.host | quote }}
+  DB_NAME: {{ .Values.database.name | quote }}
+  DB_CLIENT: {{ .Values.database.client | quote }}
+  NODE_ENV: {{ .Values.app.nodeEnv | quote }}
+  CLERK_PUBLISHABLE_KEY: {{ .Values.clerk.publishableKey | quote }}
+  FRONTEND_URL: {{ .Values.app.frontendUrl | quote }}
+  BACKEND1_BASE_URL: {{ .Values.app.backend1Url | quote }}
+  BACKEND2_BASE_URL: {{ .Values.app.backend2Url | quote }}
