@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  3-tier-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-08-03T11:15:38.836619835-04:00"
+    description: A Helm chart for Kubernetes
+    digest: f1d73674bcc5ced864ee5cfc0e1f5b82335ffd1b08e2246372bc2f3834fa91e6
+    name: 3-tier-app
+    type: application
+    urls:
+    - https://madhusudansharma1.github.io/3-tier-chart/3-tier-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-08-03T11:15:38.836078507-04:00"
